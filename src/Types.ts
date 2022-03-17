@@ -2,7 +2,8 @@ export type User = {
     id: number,
     email: string,
     name: string,
-    password: string
+    password: string,
+    basket: []
 }
 
 export type Item = {
