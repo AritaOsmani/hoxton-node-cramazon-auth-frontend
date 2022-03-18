@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { User } from '../Types'
+import { Basket, User } from '../Types'
 
 type Props = {
     user: User | null
     setUser: React.Dispatch<React.SetStateAction<User | null>>
+    basket: Basket[]
+    setBasket: React.Dispatch<React.SetStateAction<Basket[]>>
 }
 
-export default function Header({ user, setUser }: Props) {
+export default function Header({ user, setUser, basket, setBasket }: Props) {
     const navigate = useNavigate()
     const [dropDown, setDropdown] = useState('')
 
     function logOut() {
         localStorage.removeItem('token')
         setUser(null)
+        setBasket([])
     }
 
     if (user) {
@@ -21,8 +24,12 @@ export default function Header({ user, setUser }: Props) {
             <div className='header'>
                 <h1>Cramazon</h1>
                 <ul className='first-ul'>
-                    <li>Home</li>
-                    <li>Basket</li>
+                    <li onClick={() => {
+                        navigate('/')
+                    }}>Home</li>
+                    <li onClick={() => {
+                        navigate('/basket')
+                    }}>Basket</li>
                 </ul>
                 <ul className='user-ul' onClick={() => {
                     if (dropDown !== '') {
@@ -58,7 +65,7 @@ export default function Header({ user, setUser }: Props) {
                 <li onClick={() => {
                     navigate('/')
                 }}>Home</li>
-                <li>Basket</li>
+                <li >Basket</li>
             </ul>
             <ul className='second-ul'>
                 <li>

@@ -2,8 +2,7 @@ export type User = {
     id: number,
     email: string,
     name: string,
-    password: string,
-    basket: []
+    password: string
 }
 
 export type Item = {
@@ -26,4 +25,12 @@ export type SignUpForm = HTMLFormElement & {
     password: HTMLInputElement,
     confirm_pass: HTMLInputElement,
     reset: () => void
+}
+
+export type Basket = {
+    id: number,
+    quantity: number,
+    usersId: number,
+    itemsId: number,
+    item: Item
 }
